@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
@@ -20,10 +21,10 @@ class AnagramSearchTest {
   @MethodSource("searchForAnagramsTestCases")
   void searchForAnagrams(List<String> words, List<List<String>> expectedMatches) {
     // when
-    final List<List<String>> actual = underTest.findAnagrams(words);
+    final Stream<List<String>> actual = underTest.findAnagrams(words.stream());
 
     // then
-    Assertions.assertEquals(expectedMatches, actual);
+    Assertions.assertEquals(expectedMatches, actual.collect(Collectors.toList()));
   }
 
   @Test()

@@ -3,23 +3,22 @@ package de.konfusio.anagram;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.groupingBy;
 
 public class AnagramSearch {
 
-  public final List<List<String>> findAnagrams(List<String> words) {
+  public final Stream<List<String>> findAnagrams(Stream<String> words) {
     if (words == null) {
       throw new IllegalArgumentException("words is null");
     }
 
-    final Map<String, List<String>> wordsWithSameLetters = words.stream()
+    final Map<String, List<String>> wordsWithSameLetters = words
         .collect(groupingBy(this::sortedLettersInLowerCase));
 
     return wordsWithSameLetters.values().stream()
-        .filter(list -> list.size() > 1)
-        .collect(Collectors.toList());
+        .filter(list -> list.size() > 1);
   }
 
   private String sortedLettersInLowerCase(String s) {
