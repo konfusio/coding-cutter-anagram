@@ -14,10 +14,10 @@ public class AnagramSearch {
       throw new IllegalArgumentException("words is null");
     }
 
-    final Map<String, List<String>> wordsWitheSameLetters = words.stream()
+    final Map<String, List<String>> wordsWithSameLetters = words.stream()
         .collect(groupingBy(this::sortedLettersInLowerCase));
 
-    return wordsWitheSameLetters.values().stream()
+    return wordsWithSameLetters.values().stream()
         .filter(list -> list.size() > 1)
         .collect(Collectors.toList());
   }
