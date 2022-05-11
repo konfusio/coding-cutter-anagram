@@ -18,3 +18,14 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+ext {
+    javaMainClass = "de.konfusio.anagram.AnagramSampleApplication"
+}
+
+jar {
+    archiveFileName = 'sampleApplication.jar'
+    manifest (){
+        attributes("Main-Class": "de.konfusio.anagram.AnagramSampleApplication")
+    }
+}

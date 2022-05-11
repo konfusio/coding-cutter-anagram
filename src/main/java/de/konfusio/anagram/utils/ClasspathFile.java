@@ -1,30 +1,22 @@
 package de.konfusio.anagram.utils;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.stream.Stream;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class ClasspathFile {
 
-  private final Path path;
+  private final String fileLocation;
 
   public ClasspathFile(String fileLocation) {
-    try {
-      path = Path.of(this.getClass().getClassLoader().getResource(fileLocation).toURI());
-    }
-    catch (URISyntaxException e) {
-      throw new RuntimeException(e);
-    }
+    this.fileLocation = fileLocation;
   }
 
   public Stream<String> lines() {
-    try {
-      return Files.lines(path);
-    }
-    catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+    final InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(fileLocation);
+    return new BufferedReader(new InputStreamReader(inputStream, UTF_8)).lines();
   }
 }
