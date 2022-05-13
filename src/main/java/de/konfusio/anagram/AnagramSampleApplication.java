@@ -5,7 +5,7 @@ import de.konfusio.anagram.utils.ClasspathFile;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class AnagramApplication {
+public class AnagramSampleApplication {
 
   public static void main(String[] args) {
 
