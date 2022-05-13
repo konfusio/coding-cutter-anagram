@@ -24,7 +24,7 @@ ext {
 }
 
 jar {
-    archiveFileName = 'sampleApplication.jar'
+    archiveFileName = 'anagramSampleApplication.jar'
     manifest (){
         attributes("Main-Class": "de.konfusio.anagram.AnagramSampleApplication")
     }
